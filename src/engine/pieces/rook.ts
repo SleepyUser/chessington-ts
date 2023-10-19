@@ -11,18 +11,43 @@ export default class Rook extends Piece {
     public getAvailableMoves(board: Board) {
         let availableSquares: Square[] = [];
         const square = board.findPiece(this);
+        let candidateSquare = undefined;
         for (let i = square.row + 1; i <= 7; i++) {
-            availableSquares.push(Square.at(i, square.col));
+            candidateSquare = Square.at(i, square.col);
+            if (this.isSpaceValid(board, candidateSquare)) {
+                availableSquares.push(candidateSquare);
+            } else {
+                break;
+            }
         }
         for (let i = square.row - 1; i >= 0; i--) {
-            availableSquares.push(Square.at(i, square.col));
+            candidateSquare = Square.at(i, square.col);
+            if (this.isSpaceValid(board, candidateSquare)) {
+                availableSquares.push(candidateSquare);
+            } else {
+                break;
+            }
         }
         for (let i = square.col - 1; i >= 0; i--) {
-            availableSquares.push(Square.at(square.row, i));
+            candidateSquare = Square.at(square.row, i);
+            if (this.isSpaceValid(board, candidateSquare)) {
+                availableSquares.push(candidateSquare);
+            } else {
+                break;
+            }
         }
         for (let i = square.col + 1; i <= 7; i++) {
-            availableSquares.push(Square.at(square.row, i));
+            candidateSquare = Square.at(square.row, i);
+            if (this.isSpaceValid(board, candidateSquare)) {
+                availableSquares.push(candidateSquare);
+            } else {
+                break;
+            }
         }
         return availableSquares;
+    }
+
+    private isSpaceValid(board: Board, checkSquare: Square) {
+        return board.getPiece(checkSquare) === undefined;
     }
 }
