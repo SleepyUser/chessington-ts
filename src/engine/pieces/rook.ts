@@ -9,22 +9,18 @@ export default class Rook extends Piece {
     }
 
     public getAvailableMoves(board: Board) {
-        let availableSquares: Square[] =[];
+        let availableSquares: Square[] = [];
         const square = board.findPiece(this);
-        for (let i = square.row+1; i <= 7; i++)
-        {
+        for (let i = square.row + 1; i <= 7; i++) {
             availableSquares.push(Square.at(i, square.col));
         }
-        for (let i = square.row-1; i >= 0; i--)
-        {
+        for (let i = square.row - 1; i >= 0; i--) {
             availableSquares.push(Square.at(i, square.col));
         }
-        for (let i = square.col-1; i >= 0; i--)
-        {
+        for (let i = square.col - 1; i >= 0; i--) {
             availableSquares.push(Square.at(square.row, i));
         }
-        for (let i = square.col+1; i <= 7; i++)
-        {
+        for (let i = square.col + 1; i <= 7; i++) {
             availableSquares.push(Square.at(square.row, i));
         }
         return availableSquares;
