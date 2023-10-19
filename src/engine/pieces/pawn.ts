@@ -18,9 +18,14 @@ export default class Pawn extends Piece {
             blackWhiteMod = 1;
             pawnStartRow = 1;
         }
-        availableSquares.push(Square.at(square.row + (blackWhiteMod), square.col));
-        if (board.findPiece(this).row == pawnStartRow) {
-            availableSquares.push(Square.at(square.row + (2 * blackWhiteMod), square.col));
+        let candidateSquare = Square.at(square.row + (blackWhiteMod), square.col)
+        if (board.getPiece(candidateSquare) === undefined) {
+            availableSquares.push(candidateSquare);
+
+            candidateSquare = Square.at(square.row + (2 * blackWhiteMod), square.col);
+            if (board.findPiece(this).row == pawnStartRow && board.getPiece(candidateSquare) === undefined) {
+                availableSquares.push(candidateSquare);
+            }
         }
         return availableSquares;
     }
