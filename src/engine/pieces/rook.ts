@@ -46,8 +46,4 @@ export default class Rook extends Piece {
         }
         return availableSquares;
     }
-
-    private isSpaceValid(board: Board, checkSquare: Square) {
-        return board.getPiece(checkSquare) === undefined;
-    }
 }

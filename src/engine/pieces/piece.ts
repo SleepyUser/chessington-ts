@@ -18,4 +18,7 @@ export default class Piece {
         board.movePiece(currentSquare, newSquare);
     }
 
+    protected isSpaceValid(board: Board, checkSquare: Square) {
+        return board.getPiece(checkSquare) === undefined;
+    }
 }
