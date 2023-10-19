@@ -1,8 +1,6 @@
 import Player from '../player';
 import Board from '../board';
 import Square from '../square';
-import player from "../player";
-import King from "./king";
 
 export default class Piece {
     public player: Player;
@@ -124,9 +122,7 @@ export default class Piece {
 
     protected isPieceTakeable(board: Board, checkSquare: Square) {
         let targetPiece: Piece | undefined = board.getPiece(checkSquare);
-        if (targetPiece?.player != this.player && !targetPiece?.isKing) {
-            return true;
-        }
-        return false;
+        return targetPiece?.player != this.player && !targetPiece?.isKing;
+
     }
 }
