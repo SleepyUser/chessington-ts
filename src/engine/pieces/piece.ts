@@ -125,11 +125,13 @@ export default class Piece {
         return targetPiece?.player != this.player && !targetPiece?.isKing;
     }
 
+    protected isSquareOnBoard(checkSquare: Square) {
+        return (checkSquare.col >= 0 && checkSquare.col <= 7 && checkSquare.row >= 0 && checkSquare.row <= 7);
+    }
+
     protected addSquareIfValid(board: Board, availableSquares: Square[], candidateSquare: Square) {
-        if (candidateSquare.col >= 0 && candidateSquare.col <= 7 && candidateSquare.row >= 0 && candidateSquare.row <= 7) {
-            if (this.isSpaceEmpty(board, candidateSquare) || this.isPieceTakeable(board, candidateSquare)) {
-                availableSquares.push(candidateSquare);
-            }
+        if (this.isSquareOnBoard(candidateSquare) && (this.isSpaceEmpty(board, candidateSquare) || this.isPieceTakeable(board, candidateSquare))) {
+            availableSquares.push(candidateSquare);
         }
     }
 }

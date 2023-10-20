@@ -30,6 +30,12 @@ export default class Pawn extends Piece {
                 }
             }
         }
+        candidateSquare = Square.at(square.row + blackWhiteMod, square.col - 1)
+        if (this.isSquareOnBoard(candidateSquare) && !this.isSpaceEmpty(board, candidateSquare)) {
+            if (this.isPieceTakeable(board, candidateSquare)) {
+                availableSquares.push(candidateSquare);
+            }
+        }
         return availableSquares;
     }
 }
