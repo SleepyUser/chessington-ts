@@ -12,33 +12,14 @@ export default class King extends Piece {
     public getAvailableMoves(board: Board) {
         let availableSquares: Square[] = [];
         const square = board.findPiece(this);
-
-        if (square.row + 1 <= 7) {
-            availableSquares.push(Square.at(square.row + 1, square.col));
-
-        }
-        if (square.row - 1 >= 0) {
-            availableSquares.push(Square.at(square.row - 1, square.col));
-        }
-
-        if (square.col + 1 <= 7) {
-            availableSquares.push(Square.at(square.row, square.col + 1));
-            if (square.row + 1 <= 7) {
-                availableSquares.push(Square.at(square.row + 1, square.col + 1));
-            }
-            if (square.row - 1 >= 0) {
-                availableSquares.push(Square.at(square.row - 1, square.col + 1));
-            }
-        }
-        if (square.col - 1 >= 0) {
-            availableSquares.push(Square.at(square.row, square.col - 1));
-            if (square.row + 1 <= 7) {
-                availableSquares.push(Square.at(square.row + 1, square.col - 1));
-            }
-            if (square.row - 1 >= 0) {
-                availableSquares.push(Square.at(square.row - 1, square.col - 1));
-            }
-        }
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row + 1, square.col));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row - 1, square.col));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row, square.col + 1));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row + 1, square.col + 1));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row - 1, square.col + 1));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row, square.col - 1));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row + 1, square.col - 1));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row - 1, square.col - 1));
         return availableSquares;
     }
 }
