@@ -123,6 +123,5 @@ export default class Piece {
     protected isPieceTakeable(board: Board, checkSquare: Square) {
         let targetPiece: Piece | undefined = board.getPiece(checkSquare);
         return targetPiece?.player != this.player && !targetPiece?.isKing;
-
     }
 }

@@ -11,42 +11,22 @@ export default class Knight extends Piece {
     public getAvailableMoves(board: Board) {
         let availableSquares: Square[] = [];
         const square = board.findPiece(this);
-        if (square.row + 2 <= 7) //Up
-        {
-            if (square.col + 1 <= 7) {
-                availableSquares.push(Square.at(square.row + 2, square.col + 1));
-            }
-            if (square.col - 1 >= 0) {
-                availableSquares.push(Square.at(square.row + 2, square.col - 1));
-            }
-        }
-        if (square.row - 2 >= 0) //Down
-        {
-            if (square.col + 1 <= 7) {
-                availableSquares.push(Square.at(square.row - 2, square.col + 1));
-            }
-            if (square.col - 1 >= 0) {
-                availableSquares.push(Square.at(square.row - 2, square.col - 1));
-            }
-        }
-        if (square.col + 2 <= 7) //Right
-        {
-            if (square.row + 1 <= 7) {
-                availableSquares.push(Square.at(square.row + 1, square.col + 2));
-            }
-            if (square.row - 1 >= 0) {
-                availableSquares.push(Square.at(square.row - 1, square.col + 2));
-            }
-        }
-        if (square.col - 2 >= 0) //Left
-        {
-            if (square.row + 1 <= 7) {
-                availableSquares.push(Square.at(square.row + 1, square.col - 2));
-            }
-            if (square.row - 1 >= 0) {
-                availableSquares.push(Square.at(square.row - 1, square.col - 2));
-            }
-        }
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row + 2, square.col + 1));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row + 2, square.col - 1));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row - 2, square.col + 1));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row - 2, square.col - 1));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row + 1, square.col + 2));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row - 1, square.col + 2));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row + 1, square.col - 2));
+        this.addSquareIfValid(board, availableSquares, Square.at(square.row - 1, square.col - 2));
         return availableSquares;
+    }
+
+    private addSquareIfValid(board: Board, availableSquares: Square[], candidateSquare: Square) {
+        if (candidateSquare.col >= 0 && candidateSquare.col <= 7 && candidateSquare.row >= 0 && candidateSquare.row <= 7) {
+            if (this.isSpaceEmpty(board, candidateSquare) || this.isPieceTakeable(board, candidateSquare)) {
+                availableSquares.push(candidateSquare);
+            }
+        }
     }
 }
