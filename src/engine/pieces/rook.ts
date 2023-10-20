@@ -9,7 +9,7 @@ export default class Rook extends Piece {
     }
 
     public getAvailableMoves(board: Board) {
-        let availableSquares: Square[] =[];
+        const availableSquares: Square[] = [];
         const square = board.findPiece(this);
         for (let i = square.row+1; i <= 7; i++)
         {

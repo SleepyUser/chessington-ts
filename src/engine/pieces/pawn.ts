@@ -9,7 +9,7 @@ export default class Pawn extends Piece {
     }
 
     public getAvailableMoves(board: Board) {
-        let availableSquares: Square[] =[];
+        const availableSquares: Square[] = [];
         const square = board.findPiece(this);
         let blackWhiteMod: number = -1;
         let pawnStartRow: number = 6;
